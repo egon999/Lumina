@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LUMINA STREMER</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #121212;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .container {
+            text-align: center;
+            padding: 40px;
+            border: 2px solid #333;
+            border-radius: 10px;
+            background-color: #1c1c1c;
+            width: 500px; /* Enlarged container */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            position: relative;
+            z-index: 1;
+        }
+
+        .heading {
+            font-size: 30px; /* Increased heading size */
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #FF004D;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .option {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 15px 0; /* Increased spacing */
+            padding: 15px; /* Increased padding */
+            border: 1px solid #444;
+            border-radius: 5px;
+            background-color: #2a2a2a;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .option span {
+            font-size: 16px; /* Increased font size */
+        }
+
+        .toggle {
+            display: inline-block;
+            width: 50px;
+            height: 25px;
+            background-color: #444;
+            border-radius: 12px;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .toggle::before {
+            content: "";
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 20px;
+            height: 20px;
+            background-color: white;
+            border-radius: 50%;
+            transition: 0.3s;
+        }
+
+        .toggle.on {
+            background-color: #4caf50;
+        }
+
+        .toggle.on::before {
+            transform: translateX(25px);
+        }
+
+        .footer {
+            margin-top: 30px; /* Increased margin */
+            font-size: 14px; /* Increased font size */
+            color: #888;
+        }
+
+        /* Glow effect for buttons */
+        .option:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px rgba(255, 0, 0, 1);
+        }
+
+        .toggle:hover {
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+        }
+
+        .contact-btn {
+            margin-top: 30px; /* Increased margin */
+            padding: 15px; /* Increased padding */
+            border: none;
+            background: linear-gradient(to right, #FF004D, #0FB9FF);
+            color: black;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(255, 0, 0, 1);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .contact-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(255, 0, 0, 1);
+        }
+
+        .contact-btn:active {
+            transform: scale(0.95);
+        }
+
+        /* Particles */
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            background: red;
+            border-radius: 50%;
+            animation: float 1.5s infinite ease-in-out;
+        }
+
+        .triangle {
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-left: 6px solid transparent;
+            border-right: 6px solid transparent;
+            border-bottom: 10px solid rgba(255, 0, 0, 0.7);
+            animation: float 2.5s infinite ease-in-out;
+            filter: drop-shadow(0 0 10px red);
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+            50% {
+                transform: translateY(-30px);
+                opacity: 0.5;
+            }
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* Abstract Lines */
+        .abstract-line {
+            position: absolute;
+            width: 3px;
+            height: 200px;
+            background: linear-gradient(to bottom, red, transparent);
+            animation: slide 2s infinite linear;
+        }
+
+        @keyframes slide {
+            0% {
+                transform: translateY(-200px);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(200px);
+                opacity: 0;
+            }
+        }
+
+        /* Moving Gradient Line */
+        .moving-line {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 5px;
+            height: 200%;
+            background: linear-gradient(to bottom, #FF004D, #0FB9FF);
+            animation: bounce 3s ease-in-out infinite;
+            z-index: -1;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(30px);
+            }
+        }
+
+        /* Notification */
+        .notification {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 10px;
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 5px;
+            color: white;
+            font-size: 16px;
+            opacity: 0;
+            pointer-events: none;
+            animation: fadeInOut 4s forwards;
+            text-align: center;
+            font-family: 'Courier New', monospace; /* Change to a different font */
+        }
+
+        @keyframes fadeInOut {
+            0% {
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+            }
+        }
+
+        /* Glow animation */
+        .notification.glowing {
+            animation: glowingText 1.5s infinite alternate;
+        }
+
+        @keyframes glowingText {
+            0% {
+                text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #ff004d, 0 0 40px #ff004d, 0 0 50px #ff004d;
+            }
+            100% {
+                text-shadow: 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #ff004d, 0 0 50px #ff004d, 0 0 60px #ff004d;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="moving-line"></div>
+
+    <div class="container">
+        <div class="heading">LUMINA STREMER</div>
+        <div class="option">
+            <span>Aimbot External Max [BODY] [Login]</span>
+            <div class="toggle" onclick="activate('Aimbot External', this)"></div>
+        </div>
+        <div class="option">
+            <span>Chams Menu V2</span>
+            <div class="toggle" onclick="activate('Chams Menu V2', this)"></div>
+        </div>
+        <div class="option">
+            <span>Awm Scope Fov [SAFE]</span>
+            <div class="toggle" onclick="activate('Awm Scope Fov', this)"></div>
+        </div>
+        <div class="option">
+            <span>Awm Fast Switch [SAFE]</span>
+            <div class="toggle" onclick="activate('Awm Fast Switch', this)"></div>
+        </div>
+        <div class="option">
+            <span>Full Stream Mode</span>
+            <div class="toggle" onclick="activate('Full Stream Mode', this)"></div>
+        </div>
+        <!-- New NO RECOILL Option -->
+        <div class="option">
+            <span>Chams V1</span>
+            <div class="toggle" onclick="activate('Chams V1', this)"></div>
+        </div>
+        <button class="contact-btn" onclick="window.location.href='https://discord.gg/ZBAn43rT'">Contact Developer</button>
+        <div class="footer">
+            Welcome: Sir<br>
+            powered by LUMINA | Panel 
+        </div>
+    </div>
+
+    <div class="particles">
+        <!-- Generate 100 particles -->
+        <script>
+            for (let i = 0; i < 100; i++) {
+                const particle = document.createElement('div');
+                particle.className = i % 2 === 0 ? 'particle' : 'triangle';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDuration = (Math.random() * 3 + 1) + 's';
+                document.querySelector('.particles').appendChild(particle);
+            }
+        </script>
+    </div>
+
+    <!-- Notification div -->
+    <div id="notification" class="notification"></div>
+
+    <script>
+        function toggle(element) {
+            element.classList.toggle('on');
+        }
+
+        function activate(buttonName, button) {
+            // Beep sound on activation
+            const beep = new Audio('https://www.soundjay.com/button/beep-07.wav'); // Beep sound file
+            beep.play();
+
+            const notification = document.getElementById('notification');
+            notification.textContent = 'Activating...';
+            notification.classList.add('glowing');
+            notification.style.opacity = '1';
+
+            // Turn the button on
+            button.classList.add('on');
+
+            setTimeout(() => {
+                // Failure sound after activation
+                const failure = new Audio('https://www.soundjay.com/button/beep-09.wav'); // Failure sound file
+                failure.play();
+
+                notification.textContent = 'Emulator Version not supported | Contact Developer';
+                notification.classList.add('glowing');
+
+                // Turn the button off
+                button.classList.remove('on');
+            }, 4000);
+        }
+    </script>
+</body>
+</html>

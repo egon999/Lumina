@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - LUMINA CHEAT STREMER</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Orbitron', sans-serif;
+            background: #000000; /* Solid dark black background */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: white;
+            overflow: hidden;
+        }
+
+        .login-container {
+            width: 400px;
+            background: rgba(15, 15, 15, 0.95);
+            padding: 35px;
+            border-radius: 20px;
+            box-shadow: 0 0 50px rgba(255, 0, 0, 1), 0 0 70px rgba(0, 255, 150, 0.8);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .login-container h1 {
+            font-size: 28px;
+            margin-bottom: 25px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #FF004D;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 5px;
+            background: rgba(255, 0, 0, 0.1);
+            color: white;
+            font-size: 16px;
+            outline: none;
+        }
+
+        .input-group input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .input-group::before {
+            content: "";
+            position: absolute;
+            left: -35px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 25px;
+            height: 25px;
+            background: rgba(255, 0, 0, 0.5);
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(255, 0, 0, 0.7);
+        }
+
+        .input-group.username::before {
+            background-image: url('user-icon.png');
+            background-size: cover;
+        }
+
+        .input-group.password::before {
+            background-image: url('lock-icon.png');
+            background-size: cover;
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 5px;
+            background: linear-gradient(to right, #FF004D, #0FB9FF);
+            color: black;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .login-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(255, 0, 0, 1);
+        }
+
+        .login-btn:active {
+            transform: scale(0.95);
+        }
+
+        .signup-btn {
+            width: 100%;
+            padding: 15px;
+            margin-top: 15px;
+            border: none;
+            border-radius: 5px;
+            background: #333;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .signup-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+        }
+
+        .signup-btn:active {
+            transform: scale(0.95);
+        }
+
+        .sidebar-icons {
+            position: absolute;
+            top: 50%;
+            left: -60px;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .sidebar-icons div {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 0, 0, 0.5);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 0 10px rgba(255, 0, 0, 0.7);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .sidebar-icons div:hover {
+            transform: scale(1.2);
+            box-shadow: 0 0 20px rgba(255, 0, 0, 1);
+        }
+
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            background: red;
+            border-radius: 50%;
+            animation: float 1.5s infinite ease-in-out;
+        }
+
+        .triangle {
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-left: 6px solid transparent;
+            border-right: 6px solid transparent;
+            border-bottom: 10px solid rgba(255, 0, 0, 0.7);
+            animation: float 2.5s infinite ease-in-out;
+            filter: drop-shadow(0 0 10px red);
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+            50% {
+                transform: translateY(-30px);
+                opacity: 0.5;
+            }
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .abstract-line {
+            position: absolute;
+            width: 3px;
+            height: 200px;
+            background: linear-gradient(to bottom, red, transparent);
+            animation: slide 2s infinite linear;
+        }
+
+        @keyframes slide {
+            0% {
+                transform: translateY(-200px);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(200px);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h1>LUMINA CHEAT</h1>
+        <div class="sidebar-icons">
+            <div></div>
+            <div></div>
+        </div>
+        <div class="input-group username">
+            <input id="username" type="text" placeholder="Enter Username">
+        </div>
+        <div class="input-group password">
+            <input id="password" type="password" placeholder="Enter Password">
+        </div>
+        <button class="login-btn" onclick="login()">Login</button>
+        <button class="signup-btn" onclick="window.location.href='https://discord.gg/nGtE74Xv'">Do not have an account?</button>
+    </div>
+
+    <div class="particles">
+        <script>
+            for (let i = 0; i < 200; i++) {
+                const particle = document.createElement('div');
+                particle.className = i % 2 === 0 ? 'particle' : 'triangle';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDuration = (Math.random() * 3 + 1) + 's';
+                document.querySelector('.particles').appendChild(particle);
+            }
+        </script>
+    </div>
+
+    <div class="abstract-line" style="top: 10px; left: 10px;"></div>
+    <div class="abstract-line" style="bottom: 10px; right: 10px;"></div>
+
+    <script>
+        function login() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            if (username && password) {
+                window.location.href = 'main hack.html';
+            } else {
+                alert('Please enter both username and password.');
+            }
+        }
+    </script>
+</body>
+</html>
